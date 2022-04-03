@@ -8,6 +8,7 @@
 import Foundation
 import SystemConfiguration
 
+@available(iOS 13.0, *)
 class NetworkReachability: ObservableObject {
     
     @Published private(set) var reachable: Bool = false
@@ -26,7 +27,7 @@ class NetworkReachability: ObservableObject {
             return isReachable && (!connectionRequired || canConnectWithoutIntervention)
     }
     
-    func checkConnection() -> Bool {
+    public func checkConnection() -> Bool {
         var flags = SCNetworkReachabilityFlags()
         SCNetworkReachabilityGetFlags(reachability!, &flags)
 
