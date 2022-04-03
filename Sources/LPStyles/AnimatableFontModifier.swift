@@ -7,12 +7,13 @@
 
 import SwiftUI
 
+@available(iOS 13.0, *)
 public struct AnimatableFontModifier: AnimatableModifier {
     var size: Double
     var weight: Font.Weight = .regular
     var design: Font.Design = .default
     
-    var animatableData: Double {
+    public var animatableData: Double {
         get { size }
         set { size = newValue }
     }
@@ -23,6 +24,7 @@ public struct AnimatableFontModifier: AnimatableModifier {
     }
 }
 
+@available(iOS 13.0, *)
 public extension View {
     func animatableFont(size: Double, weight: Font.Weight = .regular, design: Font.Design = .default) -> some View {
         self.modifier(AnimatableFontModifier(size: size, weight: weight, design: design))
