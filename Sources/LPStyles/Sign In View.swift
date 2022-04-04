@@ -108,7 +108,7 @@ public struct SignInView: View {
 @available(iOS 13.0.0, *)
 struct SigninView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInView() {}
+        SignInView() {email, password in }
     }
 }
 
