@@ -22,6 +22,8 @@ public struct SignInView: View {
     public var emailFieldForegroundColor: Color = Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1))
     public var passwordFieldForegroundColor: Color = Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1))
     
+    public var gradientButtonAction: (_ email: String, _ password: String)->Void
+    
     @ViewBuilder
     public var body: some View {
         ZStack() {
@@ -57,7 +59,11 @@ public struct SignInView: View {
                 .background(Color.white)
                 .cornerRadius(20)
                 
-                GradientButton(text: gradientButtonText, gradient: gradientButtonColors)
+                Button {
+                    gradientButtonAction(email, password)
+                } label: {
+                    GradientButton(text: gradientButtonText, gradient: gradientButtonColors)
+                }
                 
                 Rectangle()
                     .frame(maxWidth: 335, maxHeight: 1)
@@ -102,7 +108,7 @@ public struct SignInView: View {
 @available(iOS 13.0.0, *)
 struct SigninView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInView()
+        SignInView() {}
     }
 }
 
