@@ -14,9 +14,11 @@ public struct SignInView: View {
     @State public var password: String = ""
     
     public var signInDescriptionText: String = ""
+    public var gradientButtonText: String = "SignIn"
     
     public var gradientIcon1Colors: Array<Color> = [Color(#colorLiteral(red: 0.5098039216, green: 0.2549019608, blue: 0.737254902, alpha: 1)), Color(#colorLiteral(red: 0.8823529412, green: 0.2823529412, blue: 0.5215686275, alpha: 1)), Color(#colorLiteral(red: 0.9843137255, green: 0.6470588235, blue: 0.5450980392, alpha: 1))]
     public var gradientIcon2Colors: Array<Color> = [Color(#colorLiteral(red: 0.5098039216, green: 0.2549019608, blue: 0.737254902, alpha: 1)), Color(#colorLiteral(red: 0.8823529412, green: 0.2823529412, blue: 0.5215686275, alpha: 1)), Color(#colorLiteral(red: 0.9843137255, green: 0.6470588235, blue: 0.5450980392, alpha: 1))]
+    public var gradientButtonColors: Array<Color> = [Color(#colorLiteral(red: 0.7294117647, green: 0.4588235294, blue: 1, alpha: 1)), Color(#colorLiteral(red: 0.2235294118, green: 0.07450980392, blue: 0.7215686275, alpha: 1))]
     public var emailFieldForegroundColor: Color = Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1))
     public var passwordFieldForegroundColor: Color = Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1))
     
@@ -55,7 +57,7 @@ public struct SignInView: View {
                 .background(Color.white)
                 .cornerRadius(20)
                 
-                GradientButton(text: "Sign in")
+                GradientButton(text: gradientButtonText, gradient: gradientButtonColors)
                 
                 Rectangle()
                     .frame(maxWidth: 335, maxHeight: 1)
@@ -92,7 +94,7 @@ public struct SignInView: View {
             
         }
         .frame(width: UIScreen.main.bounds.size.width)
-        .background(Color.white)
+        .customBackgroundStyle()
         .cornerRadius(30)
     }
 }
@@ -101,5 +103,18 @@ public struct SignInView: View {
 struct SigninView_Previews: PreviewProvider {
     static var previews: some View {
         SignInView()
+    }
+}
+
+@available(iOS 13.0, *)
+extension View {
+    @ViewBuilder
+    func customBackgroundStyle() -> some View {
+        if #available(iOS 15, *) {
+            self.background(.ultraThinMaterial)
+        }
+        else {
+            self.background(Color.white)
+        }
     }
 }
